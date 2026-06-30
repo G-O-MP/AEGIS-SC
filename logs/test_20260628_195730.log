@@ -1,0 +1,37 @@
+[2026-06-28 19:57:30] [INFO] ============================================================
+[2026-06-28 19:57:30] [INFO] [Stage 0] CLEAN TRAINING — encoder+decoder only
+[2026-06-28 19:57:30] [INFO] ============================================================
+[2026-06-28 19:57:30] [INFO]   [Freeze Policy] Stage 0: train=['encoder', 'decoder', 'channel'], freeze=['attack_suite', 'defense_stack', 'benign_gate']
+[2026-06-28 19:57:34] [INFO]   Epoch 1/1: MSE=1.009759
+[2026-06-28 19:57:36] [INFO]   PSNR check: 0.21 dB (threshold: 30.0 dB)
+[2026-06-28 19:57:36] [WARNING]   WARNING: PSNR 0.21 < 30.0 dB — consider more epochs or lower LR
+[2026-06-28 19:57:36] [INFO] ============================================================
+[2026-06-28 19:57:36] [INFO] [Stage 1] ATTACK TRAINING — BidirectionalAttackLoss (drift+flip+cycle)
+[2026-06-28 19:57:36] [INFO]   λ_drift=0.1, λ_flip=0.05, λ_cycle=0.2, α∈(0.05, 0.15)
+[2026-06-28 19:57:36] [INFO] ============================================================
+[2026-06-28 19:57:36] [INFO]   [Freeze Policy] Stage 1: train=['decoder', 'attack_suite'], freeze=['encoder', 'defense_stack', 'benign_gate']
+[2026-06-28 19:57:48] [INFO]   Epoch 1/1: total=0.944069, recon=0.939630, drift=0.0000, flip=0.0000, cycle=0.0222, ASR=0.0%
+[2026-06-28 19:57:48] [WARNING]   ⚠ ASR 0.0% < 85% — attack may be too weak, defense training will have no adversary!
+[2026-06-28 19:57:48] [INFO] ============================================================
+[2026-06-28 19:57:48] [INFO] [Stage 2] DEFENSE TRAINING — 4-block loss (rec+adv+c3+router)
+[2026-06-28 19:57:48] [INFO]   λ_adv=1.0, λ_c3=0.5, λ_router=0.2, c3_margin=0.15
+[2026-06-28 19:57:48] [INFO] ============================================================
+[2026-06-28 19:57:48] [INFO]   [Freeze Policy] Stage 2: train=['defense_stack', 'decoder'], freeze=['encoder', 'attack_suite', 'benign_gate']
+[2026-06-28 19:57:51] [INFO]   C3 τ_fusion = 0.5299 (calibrated on clean data)
+[2026-06-28 19:58:11] [INFO]   Epoch 1/1: total=1.416062, rec=0.926692, adv=0.060878, c3=0.299770, router=1.393032 | ASR=100.0% | S_clean=0.657, S_attack=0.658
+[2026-06-28 19:58:12] [INFO]   Convergence Check:
+[2026-06-28 19:58:12] [INFO]     PSNR=0.3 dB ✗ (target ≥28)
+[2026-06-28 19:58:12] [INFO]     ASR=100.0% ✗ (target <10%)
+[2026-06-28 19:58:12] [INFO]     C3 clean=0.657 ✗ (target <0.4)
+[2026-06-28 19:58:12] [INFO]     C3 attack=0.658 ✗ (target >0.7)
+[2026-06-28 19:58:12] [INFO] ============================================================
+[2026-06-28 19:58:12] [INFO] [Stage 3] BENIGN TRAINING — freeze encoder+attack, train benign_gate
+[2026-06-28 19:58:12] [INFO] ============================================================
+[2026-06-28 19:58:12] [INFO]   [Freeze Policy] Stage 3: train=['benign_gate'], freeze=['encoder', 'attack_suite', 'defense_stack']
+[2026-06-28 19:58:28] [INFO]   Epoch 1/1: total=1.833770, clean=0.916706, attack=0.917064, benign=0.000000, mc=0.000000
+[2026-06-28 19:58:34] [INFO]   Benign-C3 false positive rate: 100.0% (target: < 5%)
+[2026-06-28 19:58:34] [INFO]   Benign mode stats: {'normal': 0.32499998807907104, 'safe': 0.07500000298023224, 'high_precision': 0.6000000238418579, 'total': 80.0}
+[2026-06-28 19:58:34] [INFO] ============================================================
+[2026-06-28 19:58:34] [INFO] [Stage 4] EVALUATION ONLY — all modules frozen
+[2026-06-28 19:58:34] [INFO] ============================================================
+[2026-06-28 19:58:34] [INFO]   [Freeze Policy] Stage 4: train=[], freeze=['encoder', 'decoder', 'attack_suite', 'defense_stack', 'benign_gate']

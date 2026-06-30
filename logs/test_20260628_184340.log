@@ -1,0 +1,29 @@
+[2026-06-28 18:43:41] [INFO] ============================================================
+[2026-06-28 18:43:41] [INFO] [Stage 0] CLEAN TRAINING — encoder+decoder only
+[2026-06-28 18:43:41] [INFO] ============================================================
+[2026-06-28 18:43:41] [INFO]   [Freeze Policy] Stage 0: train=['encoder', 'decoder', 'channel'], freeze=['attack_suite', 'defense_stack', 'benign_gate']
+[2026-06-28 18:43:42] [INFO]   Epoch 1/1: MSE=1.009759
+[2026-06-28 18:43:42] [INFO]   PSNR check: 0.21 dB (threshold: 30.0 dB)
+[2026-06-28 18:43:42] [WARNING]   WARNING: PSNR 0.21 < 30.0 dB — consider more epochs or lower LR
+[2026-06-28 18:43:42] [INFO] ============================================================
+[2026-06-28 18:43:42] [INFO] [Stage 1] ATTACK TRAINING — freeze encoder, train decoder+attack
+[2026-06-28 18:43:42] [INFO] ============================================================
+[2026-06-28 18:43:42] [INFO]   [Freeze Policy] Stage 1: train=['decoder', 'attack_suite'], freeze=['encoder', 'defense_stack', 'benign_gate']
+[2026-06-28 18:43:44] [INFO]   Epoch 1/1: MSE=0.939539
+[2026-06-28 18:43:44] [INFO] ============================================================
+[2026-06-28 18:43:44] [INFO] [Stage 2] DEFENSE TRAINING — C3 calibration + decoder fine-tune
+[2026-06-28 18:43:44] [INFO] ============================================================
+[2026-06-28 18:43:44] [INFO]   [Freeze Policy] Stage 2: train=['defense_stack', 'decoder'], freeze=['encoder', 'attack_suite', 'benign_gate']
+[2026-06-28 18:43:44] [INFO]   C3 tau_fusion = 0.5207
+[2026-06-28 18:43:46] [INFO]   Epoch 1/1: MSE=0.914864
+[2026-06-28 18:43:46] [INFO] ============================================================
+[2026-06-28 18:43:46] [INFO] [Stage 3] BENIGN TRAINING — freeze encoder+attack, train benign_gate
+[2026-06-28 18:43:46] [INFO] ============================================================
+[2026-06-28 18:43:46] [INFO]   [Freeze Policy] Stage 3: train=['benign_gate'], freeze=['encoder', 'attack_suite', 'defense_stack']
+[2026-06-28 18:43:49] [INFO]   Epoch 1/1: total=1.798596, clean=0.899269, attack=0.899328, benign=0.000000, mc=0.000000
+[2026-06-28 18:43:50] [INFO]   Benign-C3 false positive rate: 100.0% (target: < 5%)
+[2026-06-28 18:43:50] [INFO]   Benign mode stats: {'normal': 0.32499998807907104, 'safe': 0.07500000298023224, 'high_precision': 0.6000000238418579, 'total': 80.0}
+[2026-06-28 18:43:50] [INFO] ============================================================
+[2026-06-28 18:43:50] [INFO] [Stage 4] EVALUATION ONLY — all modules frozen
+[2026-06-28 18:43:50] [INFO] ============================================================
+[2026-06-28 18:43:50] [INFO]   [Freeze Policy] Stage 4: train=[], freeze=['encoder', 'decoder', 'attack_suite', 'defense_stack', 'benign_gate']

@@ -1,0 +1,74 @@
+[2026-06-28 20:20:05] [INFO] Pipeline stages: ['clean', 'attack', 'defense', 'benign', 'eval']
+[2026-06-28 20:20:05] [INFO] ============================================================
+[2026-06-28 20:20:05] [INFO] [Stage 0] CLEAN TRAINING — encoder+decoder only
+[2026-06-28 20:20:05] [INFO] ============================================================
+[2026-06-28 20:20:05] [INFO]   [Freeze Policy] Stage 0: train=['encoder', 'decoder', 'channel'], freeze=['attack_suite', 'defense_stack', 'benign_gate']
+[2026-06-28 20:20:40] [INFO]   Epoch 1/20: MSE=0.056257
+[2026-06-28 20:20:49] [INFO]   Epoch 2/20: MSE=0.017047
+[2026-06-28 20:20:58] [INFO]   Epoch 3/20: MSE=0.013611
+[2026-06-28 20:21:07] [INFO]   Epoch 4/20: MSE=0.011676
+[2026-06-28 20:21:16] [INFO]   Epoch 5/20: MSE=0.010181
+[2026-06-28 20:21:25] [INFO]   Epoch 6/20: MSE=0.008836
+[2026-06-28 20:21:34] [INFO]   Epoch 7/20: MSE=0.007515
+[2026-06-28 20:21:43] [INFO]   Epoch 8/20: MSE=0.006373
+[2026-06-28 20:21:52] [INFO]   Epoch 9/20: MSE=0.005801
+[2026-06-28 20:22:01] [INFO]   Epoch 10/20: MSE=0.005113
+[2026-06-28 20:22:18] [INFO]   Epoch 11/20: MSE=0.004584
+[2026-06-28 20:22:53] [INFO]   Epoch 12/20: MSE=0.004112
+[2026-06-28 20:23:27] [INFO]   Epoch 13/20: MSE=0.003629
+[2026-06-28 20:24:02] [INFO]   Epoch 14/20: MSE=0.003153
+[2026-06-28 20:24:39] [INFO]   Epoch 15/20: MSE=0.002851
+[2026-06-28 20:25:08] [INFO]   Epoch 16/20: MSE=0.003763
+[2026-06-28 20:25:17] [INFO]   Epoch 17/20: MSE=0.002656
+[2026-06-28 20:25:26] [INFO]   Epoch 18/20: MSE=0.002163
+[2026-06-28 20:25:35] [INFO]   Epoch 19/20: MSE=0.001942
+[2026-06-28 20:25:44] [INFO]   Epoch 20/20: MSE=0.001823
+[2026-06-28 20:25:52] [INFO]   PSNR check: 27.56 dB (threshold: 30.0 dB)
+[2026-06-28 20:25:52] [WARNING]   WARNING: PSNR 27.56 < 30.0 dB — consider more epochs or lower LR
+[2026-06-28 20:25:52] [INFO] ============================================================
+[2026-06-28 20:25:52] [INFO] [Stage 1] ATTACK TRAINING — BidirectionalAttackLoss (drift+flip+cycle)
+[2026-06-28 20:25:52] [INFO]   λ_drift=0.1, λ_flip=0.05, λ_cycle=0.2, α∈(0.05, 0.15)
+[2026-06-28 20:25:52] [INFO] ============================================================
+[2026-06-28 20:25:52] [INFO]   [Freeze Policy] Stage 1: train=['decoder', 'attack_suite'], freeze=['encoder', 'defense_stack', 'benign_gate']
+[2026-06-28 20:26:04] [INFO]   Epoch 1/10: total=0.003009, recon=0.002753, drift=0.0000, flip=0.0000, cycle=0.0013, ASR=3.3%, α=0.050
+[2026-06-28 20:26:15] [INFO]   Epoch 2/10: total=0.001799, recon=0.001722, drift=0.0000, flip=0.0000, cycle=0.0004, ASR=0.0%, α=0.060
+[2026-06-28 20:26:27] [INFO]   Epoch 3/10: total=0.001729, recon=0.001654, drift=0.0000, flip=0.0000, cycle=0.0004, ASR=0.0%, α=0.070
+[2026-06-28 20:26:39] [INFO]   Epoch 4/10: total=0.001672, recon=0.001597, drift=0.0000, flip=0.0000, cycle=0.0004, ASR=0.0%, α=0.080
+[2026-06-28 20:26:50] [INFO]   Epoch 5/10: total=0.001622, recon=0.001548, drift=0.0000, flip=0.0000, cycle=0.0004, ASR=0.0%, α=0.090
+[2026-06-28 20:27:01] [INFO]   Epoch 6/10: total=0.001563, recon=0.001491, drift=0.0000, flip=0.0000, cycle=0.0004, ASR=0.0%, α=0.100
+[2026-06-28 20:27:13] [INFO]   Epoch 7/10: total=0.001534, recon=0.001462, drift=0.0000, flip=0.0000, cycle=0.0004, ASR=0.0%, α=0.110
+[2026-06-28 20:27:44] [INFO]   Epoch 8/10: total=0.001484, recon=0.001413, drift=0.0000, flip=0.0000, cycle=0.0004, ASR=0.0%, α=0.120
+[2026-06-28 20:28:26] [INFO]   Epoch 9/10: total=0.001460, recon=0.001386, drift=0.0000, flip=0.0000, cycle=0.0004, ASR=0.0%, α=0.130
+[2026-06-28 20:29:08] [INFO]   Epoch 10/10: total=0.001410, recon=0.001337, drift=0.0000, flip=0.0000, cycle=0.0004, ASR=0.0%, α=0.140
+[2026-06-28 20:29:08] [WARNING]   ⚠ ASR 0.0% < 85% — attack may be too weak, defense training will have no adversary!
+[2026-06-28 20:29:09] [INFO] ============================================================
+[2026-06-28 20:29:09] [INFO] [Stage 2] DEFENSE TRAINING — 3-block loss (rec+adv+c3 regression)
+[2026-06-28 20:29:09] [INFO]   λ_adv=1.0, λ_c3=2.0
+[2026-06-28 20:29:09] [INFO] ============================================================
+[2026-06-28 20:29:09] [INFO]   [Freeze Policy] Stage 2: train=['defense_stack', 'decoder'], freeze=['encoder', 'attack_suite', 'benign_gate']
+[2026-06-28 20:29:17] [INFO]   C3 τ_fusion = 0.5112 (calibrated on clean data)
+[2026-06-28 20:29:47] [INFO]   Epoch 1/5: total=0.677618, rec=0.033616, adv=0.046160, c3=0.298921 | ASR=81.2% | S_clean=0.488, S_attack=0.488
+[2026-06-28 20:30:04] [INFO]   Epoch 2/5: total=0.656198, rec=0.011502, adv=0.009871, c3=0.317413 | ASR=36.3% | S_clean=0.461, S_attack=0.461
+[2026-06-28 20:30:21] [INFO]   Epoch 3/5: total=0.649898, rec=0.006740, adv=0.007195, c3=0.317981 | ASR=23.1% | S_clean=0.460, S_attack=0.460
+[2026-06-28 20:30:37] [INFO]   Epoch 4/5: total=0.644085, rec=0.005279, adv=0.005448, c3=0.316679 | ASR=13.1% | S_clean=0.462, S_attack=0.462
+[2026-06-28 20:31:17] [INFO]   Epoch 5/5: total=0.641057, rec=0.004662, adv=0.004442, c3=0.315976 | ASR=8.3% | S_clean=0.463, S_attack=0.463
+[2026-06-28 20:31:52] [INFO]   Convergence Check:
+[2026-06-28 20:31:52] [INFO]     PSNR=23.6 dB ✗ (target ≥28)
+[2026-06-28 20:31:52] [INFO]     ASR=8.3% ✓ (target <10%)
+[2026-06-28 20:31:52] [INFO]     C3 clean=0.463 ✗ (target <0.4)
+[2026-06-28 20:31:52] [INFO]     C3 attack=0.463 ✗ (target >0.7)
+[2026-06-28 20:31:52] [INFO] ============================================================
+[2026-06-28 20:31:52] [INFO] [Stage 3] BENIGN TRAINING — freeze encoder+attack, train benign_gate
+[2026-06-28 20:31:52] [INFO] ============================================================
+[2026-06-28 20:31:52] [INFO]   [Freeze Policy] Stage 3: train=['benign_gate'], freeze=['encoder', 'attack_suite', 'defense_stack']
+[2026-06-28 20:34:49] [INFO]   Epoch 1/5: total=0.005334, clean=0.002669, attack=0.002665, benign=0.000000, mc=0.000000
+[2026-06-28 20:35:35] [INFO]   Epoch 2/5: total=0.003532, clean=0.001768, attack=0.001764, benign=0.000000, mc=0.000000
+[2026-06-28 20:36:11] [INFO]   Epoch 3/5: total=0.003305, clean=0.001654, attack=0.001651, benign=0.000000, mc=0.000000
+[2026-06-28 20:37:19] [INFO]   Epoch 4/5: total=0.003210, clean=0.001604, attack=0.001605, benign=0.000000, mc=0.000000
+[2026-06-28 20:39:54] [INFO]   Epoch 5/5: total=0.003155, clean=0.001577, attack=0.001577, benign=0.000000, mc=0.000000
+[2026-06-28 20:40:12] [INFO]   Benign-C3 false positive rate: 0.3% (target: < 5%)
+[2026-06-28 20:40:12] [INFO]   Benign mode stats: {'normal': 0.15275000035762787, 'safe': 0.0, 'high_precision': 0.8472500443458557, 'total': 8000.0}
+[2026-06-28 20:40:12] [INFO] ============================================================
+[2026-06-28 20:40:12] [INFO] [Stage 4] EVALUATION ONLY — all modules frozen
+[2026-06-28 20:40:12] [INFO] ============================================================
+[2026-06-28 20:40:12] [INFO]   [Freeze Policy] Stage 4: train=[], freeze=['encoder', 'decoder', 'attack_suite', 'defense_stack', 'benign_gate']

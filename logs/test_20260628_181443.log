@@ -1,0 +1,4 @@
+[2026-06-28 18:14:44] [INFO] ============================================================
+[2026-06-28 18:14:44] [INFO] [Stage 0] CLEAN TRAINING — encoder+decoder only
+[2026-06-28 18:14:44] [INFO] ============================================================
+[2026-06-28 18:14:44] [INFO]   [Freeze Policy] Stage 0: train=['encoder', 'decoder', 'channel'], freeze=['attack_suite', 'defense_stack', 'benign_gate']

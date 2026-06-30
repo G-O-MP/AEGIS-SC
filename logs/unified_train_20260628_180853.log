@@ -1,0 +1,1 @@
+[2026-06-28 18:08:54] [INFO]   [Freeze Policy] Stage 0: train=['encoder', 'decoder', 'channel'], freeze=['attack_suite', 'defense_stack', 'benign_gate']

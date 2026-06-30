@@ -1,0 +1,112 @@
+{
+  "history": {
+    "stage_0": {
+      "final_mse": 0.0018227504333481193,
+      "PSNR": 27.563303232192993,
+      "PSNR_pass": false
+    },
+    "stage_1": {
+      "final_total": 0.027841619526346523,
+      "final_asr": 0.0,
+      "asr_pass": false
+    },
+    "stage_2": {
+      "final_total": 0.6387127723012652,
+      "psnr": 23.975698828697205,
+      "psnr_pass": false,
+      "final_asr": 1.1904761904761905,
+      "asr_pass": true,
+      "c3_clean_score": 0.4633804190726507,
+      "c3_attack_score": 0.46308967613038565,
+      "c3_pass": false,
+      "c3_tau": 0.5142335891723633
+    },
+    "stage_3": {},
+    "stage_4": {
+      "PSNR_clean": 27.61701129731678,
+      "PSNR_attack": 27.559141999199277,
+      "PSNR_defense": 19.59205298196702,
+      "PSNR_benign": 27.621324857076008,
+      "LPIPS_clean": 0.014885958505883104,
+      "LPIPS_attack": 0.014908762426958197,
+      "LPIPS_defense": 0.13332989563544592,
+      "LPIPS_benign": 0.014814653167767184,
+      "Detection_Rate": 0.0744047619047619,
+      "SNR": 13
+    }
+  },
+  "stage_4_detail": {
+    "PSNR_clean": 27.61701129731678,
+    "PSNR_attack": 27.559141999199277,
+    "PSNR_defense": 19.59205298196702,
+    "PSNR_benign": 27.621324857076008,
+    "LPIPS_clean": 0.014885958505883104,
+    "LPIPS_attack": 0.014908762426958197,
+    "LPIPS_defense": 0.13332989563544592,
+    "LPIPS_benign": 0.014814653167767184,
+    "Detection_Rate": 0.0744047619047619,
+    "SNR": 13,
+    "per_snr": {
+      "-5": {
+        "PSNR_clean": 16.84406530289423,
+        "PSNR_attack": 16.790584666388376,
+        "PSNR_defense": 10.578815454528446,
+        "PSNR_benign": 16.798589797247026,
+        "LPIPS_clean": 0.11276846201646895,
+        "LPIPS_attack": 0.11371395488580067,
+        "LPIPS_defense": 0.20345296462376913,
+        "LPIPS_benign": 0.11461822795016426,
+        "Detection_Rate": 100.0,
+        "SNR": -5
+      },
+      "0": {
+        "PSNR_clean": 21.011231626783097,
+        "PSNR_attack": 20.991479328700475,
+        "PSNR_defense": 11.46889084861392,
+        "PSNR_benign": 20.993565377734956,
+        "LPIPS_clean": 0.05257816116015116,
+        "LPIPS_attack": 0.0523112653976395,
+        "LPIPS_defense": 0.178945426430021,
+        "LPIPS_benign": 0.052031509578228,
+        "Detection_Rate": 100.0,
+        "SNR": 0
+      },
+      "10": {
+        "PSNR_clean": 26.878459794180735,
+        "PSNR_attack": 26.832429454440163,
+        "PSNR_defense": 19.451661620821273,
+        "PSNR_benign": 26.864234947022936,
+        "LPIPS_clean": 0.014769633699740683,
+        "LPIPS_attack": 0.014534314074331806,
+        "LPIPS_defense": 0.12933236502465748,
+        "LPIPS_benign": 0.01470409045439391,
+        "Detection_Rate": 1.1160714285714286,
+        "SNR": 10
+      },
+      "13": {
+        "PSNR_clean": 27.61701129731678,
+        "PSNR_attack": 27.559141999199277,
+        "PSNR_defense": 19.59205298196702,
+        "PSNR_benign": 27.621324857076008,
+        "LPIPS_clean": 0.014885958505883104,
+        "LPIPS_attack": 0.014908762426958197,
+        "LPIPS_defense": 0.13332989563544592,
+        "LPIPS_benign": 0.014814653167767184,
+        "Detection_Rate": 0.0744047619047619,
+        "SNR": 13
+      },
+      "20": {
+        "PSNR_clean": 28.33393448875064,
+        "PSNR_attack": 28.265657538459415,
+        "PSNR_defense": 19.66926381701515,
+        "PSNR_benign": 28.334294046674454,
+        "LPIPS_clean": 0.016328135106180395,
+        "LPIPS_attack": 0.016190225968048685,
+        "LPIPS_defense": 0.1372568288019725,
+        "LPIPS_benign": 0.016368596149342402,
+        "Detection_Rate": 0.0,
+        "SNR": 20
+      }
+    }
+  }
+}
